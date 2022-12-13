@@ -1,0 +1,25 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+  <div class="container-fluid content-space-2 mt-8">
+    <div class="w-lg-50 mx-lg-auto">
+      <div class="mb-5">
+        <h2>SISTEMA DE CONSULTA DE TESIS Y JURISPRUDENCIA</h2>
+      </div>      
+   
+        <div class="col-md-12 card">        
+          <h5>ACUERDO SELECCIONADO, NIVEL DE DETALLE.</h5>
+          {% for texto in texto%}
+          <p>{{texto.acuerdo}}</p>
+        </div>        
+          {% endfor %}
+          <button type="button" class="btn btn-outline-primary">Regresar al Listado Anterior</button>
+          <button type="button" class="btn btn-outline-primary">Regresar al menu Principal</button>
+          <button type="button" class="btn btn-outline-primary">Imprimir</button>      
+    </div>
+  </div>
+</div>
+{% endautoescape %}
+{% endblock %}

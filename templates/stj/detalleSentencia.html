@@ -1,0 +1,43 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+<div class="container-fluid w-lg-80">         
+<div class="col-md-12 card">        
+<h5>SENTENCIA SELECCIONADA, NIVEL DE DETALLE</h5>
+<br>
+{% for sentencia in sentencia%}
+{{sentencia.texto}}
+<br>
+<br>
+{{sentencia.referencia}}
+{% endfor %}                        
+</div>
+
+<form action="/stj/detalle-tesis/" method="POST">{% csrf_token %}                          
+    {% for epoca in epoca %}
+        <input type="text"  value="{{epoca}}" name="detalle_checkSelectEg">
+    {% endfor %}
+    <input type="text" name="cbp" id="eventPagina" value="dsr">
+    <!--<input type="text" name="current" id="current">-->
+    <input type="text" class="form-control"  value="{{paginaSentencia}}" name="paginaSentencia">
+    <input type="text" class="form-control"  value="{{materia}}" name="detalle_materia">
+    <input type="text" class="form-control"  value="{{cve_tesis}}" name="detalle_cve_tesis">
+    <input type="text" class="form-control"  value="{{rubro}}" name="detalle_rubro">
+    <input type="text" class="form-control"  value="{{precedente}}" name="detalle_precedente">
+    <input type="text" class="form-control"  value="{{referencia}}" name="detalle_referencia">
+    <input type="text" class="form-control"  value="{{sala_pleno}}" name="detalle_sala_pleno">    
+    <input type="text" class="form-control"  value="{{texto}}" name="detalle_texto">
+    <input type="text" class="form-control"  value="{{jurisprudencias}}" name="detalle_jurisprudencias">  
+    <input type="text" class="form-control"  value="{{tesis.id}}" name="detalle_identificador">
+    <button type="submit" class="btn btn-outline-primary">Regresar al detalle de Tesis</button>
+</form>
+<ul>
+    <li class="list-inline-item"><a href="/aps-tfja/sctj/sctj-busqueda/" class="btn btn-outline-primary">Regresar al menu Principal</a></li>
+<button type="button" class="btn btn-outline-primary">Imprimir</button> 
+</ul>
+</div>
+</div>
+{% endautoescape %}
+{% endblock %}

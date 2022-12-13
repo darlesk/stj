@@ -1,0 +1,230 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+  <div class="container-fluid content-space-2 mt-8">
+    <div class="w-lg-50 text-center mx-lg-auto">
+      <div class="mb-5">
+        <h2>SISTEMA DE CONSULTA DE TESIS Y JURISPRUDENCIA</h2>
+        <p></p>
+      </div>
+      <form action="" method="POST">{% csrf_token %}
+        <div class="row ">
+          <div class="col-md-4">
+            <!-- Radio Check -->
+            <label class="form-check form-check-select" for="checkSelectEg1">
+              <input type="checkbox" class="form-check-input epocas" value="1" name="checkSelectEg" id="checkSelectEg1">
+              <span class="form-check-label">
+                <span class="d-block h4 mb-0">I Primera Época</span>
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select" for="checkSelectEg2">
+              <input type="checkbox" class="form-check-input epocas" value="2" name="checkSelectEg" id="checkSelectEg2">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">II Segunda Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select" for="checkSelectEg3">
+              <input type="checkbox" class="form-check-input  epocas" value="3" name="checkSelectEg" id="checkSelectEg3">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">III Tercera Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+            <!-- Radio Check -->
+            <label class="form-check form-check-select" for="checkSelectEg4">
+              <input type="checkbox" class="form-check-input  epocas" value="4" name="checkSelectEg" id="checkSelectEg4">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">IV Cuarta Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select" for="checkSelectEg5">
+              <input type="checkbox" class="form-check-input epocas" value="5" name="checkSelectEg" id="checkSelectEg5">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">V Quinta Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select" for="checkSelectEg6">
+              <input type="checkbox" class="form-check-input epocas" value="6" name="checkSelectEg" id="checkSelectEg6">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">VI Sexta Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select " for="checkSelectEg7">
+              <input type="checkbox" class="form-check-input epocas" value="7" name="checkSelectEg" id="checkSelectEg7">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">VII Séptima Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select " for="checkSelectEg8">
+              <input type="checkbox" class="form-check-input epocas" value="8" name="checkSelectEg" id="checkSelectEg8">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">VIII Octava Época</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select " for="checkSelectEg9">
+              <input type="checkbox" class="form-check-input epocas" value="9" name="checkSelectEg" id="checkSelectEg9">
+              <span class="form-check-label">
+                <span class="d-block h4 mb-0">IX Novena Época</span>
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select " for="checkSelectEg60">
+              <input type="checkbox" class="form-check-input todasEp" value="tesis" name="allEpocas" id="checkSelectEg60">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">Buscar en todas las Épocas</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+            <!-- Radio Check -->
+            <label class="form-check form-check-select " for="checkSelectEg70">
+              <input type="checkbox" class="form-check-input" value="jurisprudencias" name="jurisprudencias" id="checkSelectEg70">
+              <span class="form-check-label">
+
+                <span class="d-block h4 mb-0">Consulte solo Jurisprudencias en todas las epocas</span>
+
+              </span>
+              <span class="form-check-stretched-bg"></span>
+            </label>
+            <!-- End Radio Check -->
+
+          </div>
+          <div class="col-md-8">
+            <!-- Input Group -->
+            <div class="mb-3">             
+                <div class="input-group-merge">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="materia" placeholder="Materia"
+                    aria-label="Materia" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+
+                <div class="input-group-merge mt-2">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="cve_tesis" placeholder="Clave Tesis"
+                    aria-label="Clave Tesis" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+
+                <div class="input-group-merge mt-2">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="rubro" placeholder="Rubro"
+                    aria-label="Rubro" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+
+                <div class="input-group-merge mt-2">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="precedente" placeholder="Precedente"
+                    aria-label="Precedente" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+
+                <div class="input-group-merge mt-2">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="referencia" placeholder="Referencia"
+                    aria-label="Referencia" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+
+                <div class="input-group-merge mt-2">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="sala_pleno" placeholder="Sala Pleno"
+                    aria-label="Sala Pleno" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+
+                <div class="input-group-merge mt-2">
+                  <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+                    <i class="bi-search"></i>
+                  </div>
+                  <input type="text" class="form-control" id="inputGroupMergeFullName" name="texto" placeholder="Texto"
+                    aria-label="Texto" aria-describedby="inputGroupMergeFullNameAddOn">
+                </div>
+                
+            </div>
+            <!-- End Input Group -->
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </div>
+        </div>
+      </form>      
+    </div>
+  </div>
+</div>
+{% endautoescape %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$( document ).ready(function() {
+
+$("#checkSelectEg60").click(function () {
+    $("input:checkbox").prop('checked', $(this).prop("checked"));
+    $("#checkSelectEg70").prop('checked', false);     
+  });
+
+  $("#checkSelectEg70").click(function () {
+    $("input:checkbox").prop('checked', $(this).prop("checked"));
+    $("#checkSelectEg60").prop('checked', false);         
+  });
+  
+}); 
+  </script>
+{% endblock %}  

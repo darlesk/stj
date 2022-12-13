@@ -1,0 +1,337 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-5" >
+        <div class="row">
+        <h4>Clave cromática de identificación</h4>        
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: #97a5c4; border-color: #97a5c4; color: #000;" type="submit"></button>
+            <h5>Vigente</h5>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: #ebeb04; border-color: #ebeb04; color: #000;" type="submit"></button>
+            <h5>Suspendido</h5>
+          </a>
+        </div>                         
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: orange; border-color: orange; color: #000;" type="submit"></button>
+            <h5>Modificadas</h5>
+          </a>
+        </div>
+      
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: #45c8f1; border-color: #45c8f1; color: #fff;" type="submit"></button>
+            <h5>Excepciones</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="col-md-4">                                
+<form action="/stj/busqueda-resultados/" method="POST">{% csrf_token %}
+  <!-- <form action="/stj/busqueda-resultados/" method="POST">{% csrf_token %} -->
+<label class="form-check form-check-select " for="checkSelectEg10">
+<input type="checkbox" class="form-check-input todasEp" value="" name="allEpocas" id="checkSelectEg10">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">Consulta en todas las Épocas</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select " for="checkSelectEg11">
+<input type="checkbox" class="form-check-input" value="jurisprudencias" name="jurisprudencias" id="checkSelectEg11">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">Consulta específica de Jurisprudencias en todas las Épocas</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select " for="checkSelectEg9">
+<input type="checkbox" class="form-check-input epocas" value="9" name="checkSelectEg" id="checkSelectEg9">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">IX Novena Época</span>
+<span class="d-block fs-6 text-muted">desde Enero 2022 a la fecha</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select " for="checkSelectEg8">
+<input type="checkbox" class="form-check-input epocas" value="8" name="checkSelectEg" id="checkSelectEg8">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">VIII Octava Época</span>
+<span class="d-block fs-6 text-muted">desde Agosto 2016 a Diciembre de 2021</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select " for="checkSelectEg7">
+<input type="checkbox" class="form-check-input epocas" value="7" name="checkSelectEg" id="checkSelectEg7">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">VII Séptima Época</span>
+<span class="d-block fs-6 text-muted">desde Agosto de 2011 a Julio de 2016</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select" for="checkSelectEg6">
+<input type="checkbox" class="form-check-input epocas" value="6" name="checkSelectEg" id="checkSelectEg6">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">VI Sexta Época</span>
+<span class="d-block fs-6 text-muted">desde Enero de 2008 a Julio de 2011</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select" for="checkSelectEg5">
+<input type="checkbox" class="form-check-input epocas" value="5" name="checkSelectEg" id="checkSelectEg5">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">V Quinta Época</span>
+<span class="d-block fs-6 text-muted">desde Enero de 2001 a Diciembre de 2007</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select" for="checkSelectEg4">
+<input type="checkbox" class="form-check-input  epocas" value="4" name="checkSelectEg" id="checkSelectEg4">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">IV Cuarta Época</span>
+<span class="d-block fs-6 text-muted">desde Agosto de 1998 a Diciembre de 2000</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select" for="checkSelectEg3">
+<input type="checkbox" class="form-check-input  epocas" value="3" name="checkSelectEg" id="checkSelectEg3">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">III Tercera Época</span>
+<span class="d-block fs-6 text-muted">desde Agosto de 1978 a Diciembre de 1987</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select" for="checkSelectEg2">
+<input type="checkbox" class="form-check-input epocas" value="2" name="checkSelectEg" id="checkSelectEg2">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">II Segunda Época</span>
+<span class="d-block fs-6 text-muted">desde Agosto de 1978 a Diciembre de 1987</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="form-check form-check-select" for="checkSelectEg1">
+<input type="checkbox" class="form-check-input epocas" value="1" name="checkSelectEg" id="checkSelectEg1">
+<span class="form-check-label">
+<span class="d-block h4 mb-0">I Primera Época</span>
+<span class="d-block fs-6 text-muted">desde Enero 1937 a Julio de 1978</span>
+</span>
+<span class="form-check-stretched-bg"></span>
+</label>
+<label class="d-sm-none d-md-block d-none d-sm-block">
+<span class="d-block h4 mt-2"><li class="list-inline-item">
+  <a href="/stj/" class="btn btn-primary ml-5 mb-2">
+  Volver menú principal
+  <i class="bi-house ms-1 ml-5"></i>
+  </a>
+  </li></span>
+</label>
+</div>    
+<div class="col-md-8">
+<div class="mb-3">             
+<div class="input-group-merge">
+<div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+<i class="bi-search"></i>
+</div>
+<input type="text" minlength="4" class="form-control" id="inputGroupMergeFullName" value="{{materia_a}}" name="materia" placeholder="Materia"
+aria-label="Materia" aria-describedby="inputGroupMergeFullNameAddOn">
+</div>
+<div class="input-group-merge mt-4">
+<div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+<i class="bi-search"></i>
+</div>
+<input type="text" minlength="4" class="form-control" id="inputGroupMergeFullName" value="{{cve_tesis_a}}" name="cve_tesis" placeholder="Clave Tesis"
+aria-label="Clave Tesis" aria-describedby="inputGroupMergeFullNameAddOn">
+</div>
+<div class="row mt-4 mb-2">
+  <div class="input-group-merge mt-2 mb-2">
+    <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+    <i class="bi-search"></i>
+    </div>
+    <input type="text" minlength="4" class="form-control" id="id_rubro" value="{{rubro_a}}" name="rubro" placeholder="Rubro"
+    aria-label="Rubro" aria-describedby="inputGroupMergeFullNameAddOn" maxlength="100">
+    </div>
+  <div class="col-sm mb-2 mb-sm-0">    
+    <label class="form-control" for="rubroRadioEg1">
+      <span class="form-check">
+        <input type="radio" class="form-check-input" value="rubroFrase" name="rubroRadioEg" id="rubroRadioEg1" checked>
+        <span class="form-check-label">Búsqueda de rubro por frase</span>
+      </span>
+    </label>    
+  </div>
+
+  <div class="col-sm mb-2 mb-sm-0">    
+    <label class="form-control" for="rubroRadioEg2">
+      <span class="form-check">
+        <input type="radio" class="form-check-input" value="rubroPalabras" name="rubroRadioEg" id="rubroRadioEg2">
+        <span class="form-check-label">Búsqueda de rubro por palabras</span>
+      </span>
+    </label>    
+  </div>
+</div>
+<span class="form-text mt-2">Para búsqueda por frase escribe el texto completo - Para búsqueda por palabra separa cada una con un espacio.</span>
+<div class="row mt-4">
+  <div class="input-group-merge mt-2 mb-2">
+    <div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+    <i class="bi-search"></i>
+    </div>
+    <input type="text" minlength="4" class="form-control" id="id_detalle_texto" value="{{texto_a}}" name="texto" placeholder="Texto"
+    aria-label="Texto" aria-describedby="inputGroupMergeFullNameAddOn">
+    </div>
+  <div class="col-sm mb-2 mb-sm-0">    
+    <label class="form-control" for="textoRadioEg3">
+      <span class="form-check">
+        <input type="radio" class="form-check-input" name="textoRadioEg" value="textoFrase" id="textoRadioEg3" checked>
+        <span class="form-check-label">Busqueda de texto por frase</span>
+      </span>
+    </label>    
+  </div>
+  <div class="col-sm mb-2 mb-sm-0">    
+    <label class="form-control" for="textoRadioEg4">
+      <span class="form-check">
+        <input type="radio" class="form-check-input" name="textoRadioEg" value="textoPalabras" id="textoRadioEg4">
+        <span class="form-check-label">Busqueda de texto por palabras</span>
+      </span>
+    </label>    
+  </div>  
+</div>
+<div class="row mt-2">
+<span class="form-text mt-2">Para búsqueda por frase escribe el texto completo - Para búsqueda por palabra separa cada una con un espacio.</span>
+</div>
+<div class="input-group-merge mt-4">
+<div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+<i class="bi-search"></i>
+</div>
+<input type="text" minlength="4" class="form-control" id="inputGroupMergeFullName" value="{{precedente_a}}" name="precedente" placeholder="Precedente"
+aria-label="Precedente" aria-describedby="inputGroupMergeFullNameAddOn">
+</div>
+<div class="input-group-merge mt-4">
+<div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+<i class="bi-search"></i>
+</div>
+<input type="text" minlength="4" class="form-control" id="inputGroupMergeFullName" value="{{sala_pleno_a}}" name="sala_pleno" placeholder="Sección / Pleno"
+aria-label="Sala Pleno" aria-describedby="inputGroupMergeFullNameAddOn">
+</div>
+<div class="input-group-merge mt-4">
+<div class="input-group-prepend input-group-text" id="inputGroupMergeFullNameAddOn">
+<i class="bi-search"></i>
+</div>
+<input type="text" minlength="4" class="form-control" id="inputGroupMergeFullName" value="{{referencia_a}}" name="referencia" placeholder="Localización"
+aria-label="Referencia" aria-describedby="inputGroupMergeFullNameAddOn">
+</div>
+</div>
+<button type="submit" class="btn btn-primary mb-4">Buscar</button>        
+
+<li class="list-inline-item d-block d-sm-none d-sm-block d-md-none">
+  <a href="/stj/" class="btn btn-primary mb-2">
+  Volver menú principal
+  <i class="bi-house ms-1 ml-5"></i>
+  </a>
+  </li>
+
+</div>
+</div>        
+</form>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Debe seleccionar al menos una Época
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+{% endautoescape %}
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$('form').submit(function(e){
+  // si la cantidad de checkboxes "chequeados" es cero,
+  // entonces se evita que se envíe el formulario y se
+  // muestra una alerta al usuario
+  if ($('input[type=checkbox]:checked').length === 0) {
+      e.preventDefault();
+      $('#myModal').modal('show');
+  }
+});
+</script>
+<script type="text/javascript">
+$( document ).ready(function() {
+$("#checkSelectEg10").click(function () {
+$("input:checkbox").prop('checked', $(this).prop("checked"));
+
+$("#checkSelectEg11").prop('checked', false);     
+});
+
+$("#checkSelectEg11").click(function () {
+$("input:checkbox").prop('checked', $(this).prop("checked"));
+
+$("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg1").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg2").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg3").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg4").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg5").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg6").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg7").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg8").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+$("#checkSelectEg9").click(function () {
+  $("#checkSelectEg11").prop('checked', false);  
+  $("#checkSelectEg10").prop('checked', false);         
+});
+}); 
+</script>
+<script>
+$( document ).ready(function() {
+$( "#load" ).hide()
+$( "#btShow" ).click(function() {    
+    $( "#load" ).show( "slow", function() {
+      // Animation complete.
+    });
+  });
+});
+</script>
+{% endblock %}  
+

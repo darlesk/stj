@@ -1,0 +1,95 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="container">
+    
+<!-- Card Grid -->
+<div class="container content-space-1">
+      
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+      <div class="col mb-5 mb-md-0">
+        <!-- Card -->
+        <a class="card card-ghost card-transition-zoom h-100" href="../blog-article.html">
+          <div class="card-transition-zoom-item">
+            <img class="card-img" src="https://htmlstream.com/unify/assets/img/580x480/img1.jpg" alt="Image Description">
+          </div>
+  
+          <div class="card-body">
+            <h4>Tesis y jurisprudencias</h4>
+            <p class="card-text">De 1937 a la fecha</p>
+          </div>
+  
+          <div class="card-footer">
+            <span class="card-link">Ir al buscador</span>
+          </div>
+        </a>
+        <!-- End Card -->
+      </div>
+      <!-- End Col -->
+  
+      <div class="col mb-5 mb-md-0">
+        <!-- Card -->
+        <a class="card card-ghost card-transition-zoom h-100" href="../blog-article.html">
+          <div class="card-pinned card-transition-zoom-item">
+            <img class="card-img" src="https://htmlstream.com/unify/assets/img/580x480/img2.jpg" alt="Image Description">            
+          </div>
+  
+          <div class="card-body">
+            <h4>Tesis y jurisprudencias</h4>
+            <p class="card-text">Modificadas, suspendidas o dejadas sin efectos</p>
+          </div>
+  
+          <div class="card-footer">
+            <span class="card-link">Ver PDF</span>
+          </div>
+        </a>
+        <!-- End Card -->
+      </div>
+      <!-- End Col -->
+  
+      <div class="col">
+        <!-- Card -->
+        <a class="card card-ghost card-transition-zoom h-100" href="../blog-article.html">
+          <div class="card-transition-zoom-item">
+            <img class="card-img" src="https://htmlstream.com/unify/assets/img/580x480/img3.jpg" alt="Image Description">
+          </div>
+  
+          <div class="card-body">
+            <h4>Resoluciones relevantes y votos particulares</h4>
+            <p class="card-text">Que no constituyeron tesis o jurisprudencia</p>
+          </div>
+  
+          <div class="card-footer">
+            <span class="card-link">Ver PDF</span>
+          </div>
+        </a>
+        <!-- End Card -->
+      </div>
+
+      <div class="col">
+        <!-- Card -->
+        <a class="card card-ghost card-transition-zoom h-100" href="../blog-article.html">
+          <div class="card-transition-zoom-item">
+            <img class="card-img" src="https://htmlstream.com/unify/assets/img/580x480/img3.jpg" alt="Image Description">
+          </div>
+  
+          <div class="card-body">
+            <h4>Jurisprudencia SCJN</h4>
+            <p class="card-text">Relevante para la competencia del TFJA</p>
+          </div>
+  
+          <div class="card-footer">
+            <span class="card-link">Ir al micrositio</span>
+          </div>
+        </a>
+        <!-- End Card -->
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- End Card Grid -->
+</div>
+{% endautoescape %}
+{% endblock %}

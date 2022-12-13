@@ -1,0 +1,66 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="container">
+<!-- Icon Blocks -->
+<div class="container content-space-1">
+ 
+    <div class="row">
+      <div class="col-md-3 mb-5 mb-md-0">
+        <!-- Icon Block -->
+        <div class="text-center mx-md-3">
+          <div class="mb-3">
+            <i class="bi-search fs-1 text-dark"></i>
+          </div>
+          <h5>Tesis y jurisprudencias</h5>
+          <p>De 1937 a la fecha</p>
+        </div>
+        <!-- End Icon Block -->
+      </div>
+      <!-- End Col -->
+  
+      <div class="col-md-3 mb-5 mb-md-0">
+        <!-- Icon Block -->
+        <div class="text-center mx-md-3">
+          <div class="mb-3">
+            <i class="bi-file-post fs-1 text-dark"></i>
+          </div>
+          <h5>Tesis y jurisprudencias</h5>
+          <p>Modificadas, suspendidas o dejadas sin efectos</p>
+        </div>
+        <!-- End Icon Block -->
+      </div>
+      <!-- End Col -->
+  
+      <div class="col-md-3">
+        <!-- Icon Block -->
+        <div class="text-center mx-md-3">
+          <div class="mb-3">
+            <i class="bi-file-earmark-text fs-1 text-dark"></i>
+          </div>
+          <h5>Resoluciones relevantes y votos particulares</h5>
+          <p>Que no constituyeron tesis o jurisprudencia</p>
+        </div>
+        <!-- End Icon Block -->
+      </div>
+
+      <div class="col-md-3">
+        <!-- Icon Block -->
+        <div class="text-center mx-md-3">
+          <div class="mb-3">
+            <i class="bi-bank fs-1 text-dark"></i>
+          </div>
+          <h5>Jurisprudencia SCJN</h5>
+          <p>Relevante para la competencia del TFJA</p>
+        </div>
+        <!-- End Icon Block -->
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- End Icon Blocks -->
+</div>
+{% endautoescape %}
+{% endblock %}

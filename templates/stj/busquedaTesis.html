@@ -1,0 +1,239 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+<div class="container-fluid w-lg-80">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-5" >
+        <div class="row">
+        <h4>Clave cromática de identificación</h4>
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: #97a5c4; border-color: #97a5c4; color: #000;" type="submit"></button>
+            <h5>Vigente</h5>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: #ebeb04; border-color: #ebeb04; color: #000;" type="submit"></button>
+            <h5>Suspendido</h5>
+          </a>
+        </div>          
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: orange; border-color: orange; color: #000;" type="submit"></button>
+            <h5>Modificadas</h5>
+          </a>
+        </div>
+
+        <div class="col-lg-3">
+          <a class="d-block text-center">
+            <button class="btn btn-lh rounded-pill" style="background-color: #45c8f1; border-color: #45c8f1; color: #fff;" type="submit"></button>
+            <h5>Excepciones</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<form action="/stj/sctj-busqueda/" method="POST">{% csrf_token %}
+  <input type="hidden" class="form-control"  value="{{materia}}" name="materia_a">
+  <input type="hidden" class="form-control"  value="{{cve_tesis}}" name="cve_tesis_a">
+  <input type="hidden" class="form-control"  value="{{rubro}}" name="rubro_a">
+  <input type="hidden" class="form-control"  value="{{texto}}" name="texto_a">
+  <input type="hidden" class="form-control"  value="{{precedente}}" name="precedente_a">
+  <input type="hidden" class="form-control"  value="{{sala_pleno}}" name="sala_pleno_a">
+  <input type="hidden" class="form-control"  value="{{referencia}}" name="referencia_a">  
+  <input type="hidden" class="form-control"  value="{{rubroRadioEg}}" name="rubroRadioEg">  
+  <input type="hidden" class="form-control"  value="{{textoRadioEg}}" name="textoRadioEg">  
+  <button type="submit" class="btn btn-primary ml-5 mb-3">Regresar a la Búsqueda</button>
+</form>
+
+<form action="/stj/busqueda-resultados/" method="POST">{% csrf_token %}
+<!-- <form action="/stj/detalle-tesis/" method="POST">{% csrf_token %} -->
+<div>     
+<div class="col-md-12">     
+<nav aria-label="...">
+<ul class="pagination nav justify-content-center">
+{% if tesis.has_previous %}
+<input type="hidden" value="1" name="input-pagina-primero" id="input-pagina">  
+<li class="list-inline-item"><div id="anchor-anterior"><button id="boton_primero" type="submit" class="btn btn-primary" aria-label="First">
+<span aria-hidden="true">
+<i class="fa fa-angle-left g-mr-5"></i>
+Inicio
+</span>
+<span class="sr-only">Inicio</span>
+</button></div></li>
+<input type="hidden" value="{{ tesis.previous_page_number }}" name="input-pagina-anterior" id="input-pagina">  
+<li class="list-inline-item"><div id="anchor-anterior"><button id="boton_anterior" type="submit" class="btn btn-primary" aria-label="Previous">
+<span aria-hidden="true">
+<i class="fa fa-angle-left g-mr-5"></i>
+Anterior
+</span>
+<span class="sr-only">Anterior</span>
+</button></div></li>
+{% endif %}
+<li class="page-item"><a class="page-link" href="#">{{ tesis.number }} de {{ tesis.paginator.num_pages }}</a></li>    
+{% if tesis.has_next %}
+<li class="list-inline-item"><div ><button type="submit" id="boton_siguiente" class="btn btn-primary" aria-label="Next">     
+<input type="hidden" value="{{tesis.next_page_number}}" name="input-pagina-siguiente" id="input-pagina">
+<span aria-hidden="true">
+Siguiente
+<i class="fa fa-angle-right g-ml-5"></i>
+</span>
+<span class="sr-only">Siguiente</span>
+</button>
+</div>
+</li>
+<li class="page-item">
+<div ><button type="submit" id="boton_ultimo" class="btn btn-primary" aria-label="Last">     
+<input type="hidden" value="{{tesis.paginator.num_pages}}" name="input-pagina-ultimo" id="input-pagina">
+<span aria-hidden="true">
+Último
+<i class="fa fa-angle-right g-ml-5"></i>
+</span>
+<span class="sr-only">Último</span>
+</button>
+</div>
+</li>
+{% endif %}
+
+</ul>
+{% for epoca in epoca %}
+<input type="hidden"  value="{{epoca}}" name="checkSelectEg">
+{% endfor %}
+<input type="hidden" name="cbp" id="eventPagina">
+<input type="hidden" name="current" id="current">
+<input type="hidden" class="form-control"  value="{{materia}}" name="materia">
+<input type="hidden" class="form-control"  value="{{cve_tesis}}" name="cve_tesis">
+<input type="hidden" class="form-control"  value="{{rubro}}" name="rubro">
+<input type="hidden" class="form-control"  value="{{precedente}}" name="precedente">
+<input type="hidden" class="form-control"  value="{{referencia}}" name="referencia">
+<input type="hidden" class="form-control"  value="{{sala_pleno}}" name="sala_pleno">
+{%if jurisprudencias%}
+<input type="hidden" class="form-control"  value="{{jurisprudencias}}" name="jurisprudencias">
+{%else%}
+<input type="hidden" class="form-control"  value="NoJurisprudencia" name="jurisprudencias">
+{%endif%}
+<input type="hidden" class="form-control"  value="{{texto}}" name="texto">
+<input type="hidden" class="form-control"  value="{{rubroRadioEg}}" name="rubroRadioEg">  
+<input type="hidden" class="form-control"  value="{{textoRadioEg}}" name="textoRadioEg">  
+</form> 
+</nav>   
+<div id="tabNumExp ">
+<div class="table-responsive">
+<table class="table table-hover mb-0 mt-4 context2">
+<thead>
+<tr>
+<th scope="col" style="text-align: center;">Materia</th>
+<th scope="col" style="text-align: center;">Identificador</th>
+<th scope="col" style="text-align: center;">Clave</th>
+<th scope="col" style="text-align: center;">Rubro</th>                        
+<th scope="col" style="text-align: center;">Referencia</th>                        
+<th scope="col" style="text-align: center;">Sala Pleno</th>                        
+</tr>
+</thead>
+<p>{{msj}}</p>
+{% if not tesis%}
+<p>No se han encontrado resultados para tu búsqueda </p>
+<p>Sugerencias:</p>
+
+<ul>
+<li>Asegúrate de que todas las palabras estén escritas correctamente.</li>
+<li>Intenta diferentes palabras clave.</li>
+<li>Intenta palabras clave más generales.</li>
+</ul>
+
+{%endif%}
+{% for tesis in tesis%}
+<tr>                      
+<td>{{tesis.materia}}</td>
+<td>
+<form action="/stj/detalle-tesis/" method="POST">{% csrf_token %}
+<!-- <form action="/stj/detalle-tesis/" method="POST">{% csrf_token %} -->
+{% for epoca in epoca %}
+<input type="hidden"  value="{{epoca}}" name="detalle_checkSelectEg">
+{% endfor %}
+<input type="hidden" class="form-control"  value="{{materia}}" name="detalle_materia">
+<input type="hidden" class="form-control"  value="{{cve_tesis}}" name="detalle_cve_tesis">
+<input type="hidden" class="form-control"  value="{{rubro}}" name="detalle_rubro">
+<input type="hidden" class="form-control"  value="{{precedente}}" name="detalle_precedente">
+<input type="hidden" class="form-control"  value="{{referencia}}" name="detalle_referencia">
+<input type="hidden" class="form-control"  value="{{sala_pleno}}" name="detalle_sala_pleno">
+<input type="hidden" class="form-control"  value="{{texto}}" name="detalle_texto">
+<input type="hidden" class="form-control"  value="{{jurisprudencias}}" name="detalle_jurisprudencias">
+<input type="hidden" class="form-control"  value="{{tesis.id}}" name="detalle_identificador">
+<input type="hidden" class="form-control"  value="{{rubroRadioEg}}" name="rubroRadioEg">  
+<input type="hidden" class="form-control"  value="{{textoRadioEg}}" name="textoRadioEg">
+{%if tesis.status == 2 or tesis.status == 1%}
+<button class="btn" style="background-color: #97a5c4; border-color: #97a5c4; color: #000;" type="submit">{{tesis.id}} &nbsp;<i class="bi-search"></i></button>
+{%endif%}
+{%if tesis.status == 3%}
+<button class="btn" style="background-color: yellow; border-color: yellow; color: #000;" type="submit">{{tesis.id}}&nbsp;<i class="bi-search"></i></button>
+{%endif%}
+{%if tesis.status == 4%}
+<button class="btn btn-success" style="background-color: orange; border-color: orange; color: #000;"  type="submit">{{tesis.id}}&nbsp;<i class="bi-search"></i></button>
+{%endif%}
+{%if tesis.status == 5%}
+<button class="btn" style="background-color: #45c8f1; border-color: #45c8f1; color: #fff;"  type="submit">{{tesis.id}}&nbsp;<i class="bi-search"></i></button>
+{%endif%}
+</form>
+</td>
+<td>{{tesis.cve_tesis}}</td>
+<td>{{tesis.rubro}}</td>                    
+<td>{{tesis.referencia}}</td>                    
+<td>{{tesis.sala_pleno}}</td>                    
+</tr>
+{% endfor %}
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endautoescape %}
+{% endblock %}
+{% block javascript %}
+<script>
+var instance = new Mark(document.querySelector(".context2"));
+instance.mark("{{materia}}");
+instance.mark("{{cve_tesis}}");
+instance.mark("{{rubro}}"); 
+instance.mark("{{precedente}}");
+instance.mark("{{referencia}}");
+instance.mark("{{sala_pleno}}");
+instance.mark("{{texto}}");
+</script> 
+<script>
+$('.boton-actual').on('click', function() {      
+  actual = this.value;  
+  $('#eventPagina').val("current");
+  $('#current').val(actual);
+  $('.pagination-no-space').hide();  
+});
+$('#boton_anterior').on('click', function() {  
+  $('#eventPagina').val("anterior");
+  $('.pagination-no-space').hide();
+});  
+$('#boton_siguiente').on('click', function() {     
+  $('#eventPagina').val("siguiente");  
+  $('.pagination-no-space').hide();
+}); 
+$('#boton_ultimo').on('click', function() {     
+  $('#eventPagina').val("ultimo");  
+  $('.pagination-no-space').hide();
+}); 
+$('#boton_primero').on('click', function() {     
+  $('#eventPagina').val("primero");  
+  $('.pagination-no-space').hide();
+}); 
+$('.detalle-tesis-actual').on('click', function() {      
+  actual = this.value;    
+  $('#pk-id').val(actual);     
+});   
+</script>
+{%endblock%}

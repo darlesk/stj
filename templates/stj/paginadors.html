@@ -1,0 +1,73 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+<div class="container-fluid w-lg-80">
+  <!--Clave Cromatica-->
+  <div class="col-md-12">
+    <div class="row mb-5">
+    <h4>Clave cromática de identificación</h4>        
+    <div class="col-lg-3">
+      <a class="d-block text-center" href="">
+        <button class="btn" style="background-color: yellow; border-color: yellow; color: #000;" type="submit">44466<i class="bi-eye ms-1"></i></button>
+        <h4>Suspendido</h4>
+      </a>
+    </div>
+  
+    <div class="col-lg-3">
+      <a class="d-block text-center" href="">
+        <button class="btn btn-primary"  type="submit">14288<i class="bi-eye ms-1"></i></button>
+        <h4>Vigente</h4>
+      </a>
+    </div>
+  
+    <div class="col-lg-3">
+      <a class="d-block text-center" href="">
+        <button class="btn btn-success" style="background-color: orange; border-color: orange; color: #000;" type="submit">3332<i class="bi-eye ms-1"></i></button>
+        <h4>Modificadas</h4>
+      </a>
+    </div>
+  
+    <div class="col-lg-3">
+      <a class="d-block text-center" href="">
+        <button class="btn" style="background-color: #45c8f1; border-color: #45c8f1; color: #fff;" type="submit">3332<i class="bi-eye ms-1"></i></button>
+        <h4>Excepciones</h4>
+      </a>
+    </div>
+  </div>
+</div>
+  
+<div class="card">
+  <div class="card-body">        
+    <h3>Paginador por get</h3>
+    {% for contact in page_obj %}    
+    {{ contact.cve_unica|upper }} {{ contact.no_reg|upper}} {{ contact.materia|upper  }}<br>    
+    {% endfor %}
+    <!--Paginador-->
+    <nav aria-label="...">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1">&laquo; primero</a>      
+        </li>
+        <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">anterior</a>
+      </li>
+        {% endif %}
+
+        <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>    
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">siguiente</a>      
+        </li>
+        <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">ultimo &raquo;</a>      
+      </li>
+      {% endif %}
+      </ul>
+    </nav>    
+  </div>
+</div>
+{% endautoescape %}
+{%endblock%}

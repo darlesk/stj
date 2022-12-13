@@ -1,0 +1,35 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+<div class="container-fluid">
+<div class="w-lg-50 mx-lg-auto">     
+<div class="col-md-12 mb-4">        
+<h5>TESIS SELECCIONADA, NIVEL DE DETALLE</h5>
+<br>
+{% for texto in texto%}
+<p>{{texto.rubro}}</p>
+<p>{{texto.precedente}}</p>
+<p>{{texto.referencia}}</p>
+</div>
+<form action="/aps-tfja/sctj/detalle-sentencia/" method="POST">{% csrf_token %}                          
+<input type="hidden"  name="sentencia_relacionada" value="{{texto.cve_unica}}">
+<ul>
+{% if texto.cve_tesis %}
+<li class="list-inline-item"><button type="submit" class="btn btn-outline-primary">Ver Sentencia Relacionada</button></li>
+{%endif%}
+{% if texto.acuerdo %}
+<li class="list-inline-item"><button type="submit" class="btn btn-outline-primary">Ver Acuerdo</button></li>
+{%endif%}
+<li class="list-inline-item"><button type="button" class="btn btn-outline-primary">Regresar al Listado Anterior</button></li>
+<li class="list-inline-item"><button type="button" class="btn btn-outline-primary">Regresar al menu Principal</button></li>
+<li class="list-inline-item"><button type="button" class="btn btn-outline-primary">Imprimir</button></li>
+</ul>
+</form>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endautoescape %}
+{% endblock %}

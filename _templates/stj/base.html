@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>  
+  <title> Boletín TFJA</title>    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">    
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./favicon.ico">
+  
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="{% static "assetsv33/vendor/bootstrap-icons/font/bootstrap-icons.css"%}">  
+  <link rel="stylesheet" href="{% static "assetsv33/vendor/hs-mega-menu/dist/hs-mega-menu.min.css"%}">  
+  <link rel="stylesheet" href="{% static "assetsv33/vendor/swiper/swiper-bundle.min.css"%}">  
+  <link rel="stylesheet" href="{% static "assetsv33/vendor/hs-video-player/dist/hs-video-player.min.js"%}">  
+
+  <!-- CSS Unify Template -->
+  <link rel="stylesheet" href="{% static "assetsv33/css/theme.min.css"%}">  
+
+</head>
+<body>    
+<header id="header" class="navbar navbar-expand-lg navbar-end navbar-sticky-top navbar-dark bg-dark mb-4" hsheader="true">
+<div class="container">
+<nav class="js-mega-menu navbar-nav-wrap hs-menu-initialized hs-menu-horizontal">
+<a class="" href="/" aria-label="TFJA">
+<img class="mr-4" src="/static/images/logos/logo-blancoh.svg" width="300" height="96" alt="Logo">
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-default">
+<i class="bi-list"></i>
+</span>
+<span class="navbar-toggler-toggled">
+<i class="bi-x"></i>
+</span>
+</button>       
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+<div class="navbar-sticky-top-scroller">
+<ul class="navbar-nav nav-pills">
+<li class="nav-item">
+<a class="btn btn-dark d-none d-lg-inline-block" href="/boletin/juicio-linea/"  ><span class="u-icon-v2 g-color-black g-bg-white rounded-circle g-mb-20">
+<i class="fa fa-file-pdf-o fa-lg"></i>
+<h5 class="text-white">LFPCA</h5>
+</span></a>
+<a class="btn btn-dark d-lg-none d-lg-inline-block" href="/boletin/juicio-linea/"><span class="u-icon-v2 g-color-black g-bg-white rounded-circle g-mb-20">
+<i class="fa fa-file-pdf-o fa-lg"></i>
+<h5 class="text-white">LFPCA</h5>
+</span></a>
+</li>
+<li class="nav-item">
+<a class="btn btn-dark d-none d-lg-inline-block" href="/boletin/jurisdiccional/"> <span class="u-icon-v2 g-color-black g-bg-white rounded-circle g-mb-20">
+<i class="fa fa-gavel fa-lg"></i>
+<h5 class="text-white">LGRA</h5>
+</span></a>
+<a class="btn btn-dark d-lg-none d-lg-inline-block" href="/boletin/jurisdiccional/"> <span class="u-icon-v2 g-color-black g-bg-white rounded-circle g-mb-20">
+<i class="fa fa-gavel fa-lg"></i>
+<h5 class="text-white">LGRA</h5>
+</span></a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main id="content" role="main">
+{% block busquedaFecha %}
+{% endblock  %}
+{% block boletin %}
+{% endblock  %}    
+</main>
+  
+  <!-- JS Global Compulsory  -->
+  <script src="{% static "assetsv33/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"%}"></script>    
+
+  <!-- JS Implementing Plugins -->
+  <script src="{% static "assetsv33/vendor/hs-header/dist/hs-header.min.js"%}"></script>    
+  <script src="{% static "assetsv33/vendor/hs-mega-menu/dist/hs-mega-menu.min.js"%}"></script>    
+  <script src="{% static "assetsv33/vendor/hs-go-to/dist/hs-go-to.min.js"%}"></script>    
+  <script src="{% static "assetsv33/vendor/swiper/swiper-bundle.min.js"%}"></script>    
+  <script src="{% static "assetsv33/vendor/hs-video-player/dist/hs-video-player.min.js"%}"></script>    
+
+  <!-- JS Unify -->
+  <script src="{% static "assetsv33/js/theme.min.js"%}"></script>    
+  <script src="{% static "assetsv33/js/jquery-3.6.0.min.js"%}"></script>    
+  
+  {% block javascript %}{% endblock %}  
+    <!-- JS Plugins Init. -->
+    <script>
+      (function() {
+        // INITIALIZATION OF NAVBAR
+        // =======================================================
+        new HSHeader('#header').init()
+  
+  
+        // INITIALIZATION OF MEGA MENU
+        // =======================================================
+        const megaMenu = new HSMegaMenu('.js-mega-menu', {
+          desktop: {
+            position: 'left'
+          }
+        })
+  
+  
+        // INITIALIZATION OF GO TO
+        // =======================================================
+        new HSGoTo('.js-go-to')
+  
+  
+        // INITIALIZATION OF SWIPER
+        // =======================================================
+        var swiper = new Swiper('.js-swiper-clients',{
+          slidesPerView: 2,
+          breakpoints: {
+            380: {
+              slidesPerView: 3,
+              spaceBetween: 15,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 15,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 15,
+            },
+          },
+        });
+  
+  
+        // INITIALIZATION OF VIDEO PLAYER
+        // =======================================================
+        new HSVideoPlayer('.js-inline-video-player')
+      })()
+    </script>
+
+</body>
+</html>   

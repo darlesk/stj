@@ -1,0 +1,44 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+    <div class="container-fluid w-lg-80">
+        <div class="col-md-12 card">
+            <div class="mb-5">
+            <div class="row">
+            <h4>Registros</h4>        
+            <div class="col-lg-3">
+              <a class="d-block text-center">
+                <button class="btn btn-lh rounded-pill" style="background-color: #ebeb04; border-color: #ebeb04; color: #000;" type="submit">{{suspendidas}}</button>
+                <h5>Suspendido</h5>
+              </a>
+            </div>
+          
+            <div class="col-lg-3">
+              <a class="d-block text-center">
+                <button class="btn btn-lh rounded-pill" style="background-color: #97a5c4; border-color: #97a5c4; color: #000;" type="submit">{{publicadas}}</button>
+                <h5>Vigente</h5>
+              </a>
+            </div>
+          
+            <div class="col-lg-3">
+              <a class="d-block text-center">
+                <button class="btn btn-lh rounded-pill" style="background-color: orange; border-color: orange; color: #000;" type="submit">{{modificadas}}</button>
+                <h5>Modificadas</h5>
+              </a>
+            </div>
+          
+            <div class="col-lg-3">
+              <a class="d-block text-center">
+                <button class="btn btn-lh rounded-pill" style="background-color: #45c8f1; border-color: #45c8f1; color: #fff;" type="submit">{{excepciones}}</button>
+                <h5>Excepciones</h5>
+              </a>
+            </div>
+          </div>
+        </div>
+    </div>        
+    </div>
+</div>
+{% endautoescape %}
+{% endblock %}

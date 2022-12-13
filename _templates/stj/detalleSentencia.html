@@ -1,0 +1,28 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+  <div class="container-fluid content-space-2 mt-8" style="width: 80%;">
+    <div class="">
+      <div class="mb-5">
+        <h2>SISTEMA DE CONSULTA DE TESIS Y JURISPRUDENCIA</h2>
+      </div>      
+   
+        <div class="col-md-12 card" style="max-width: 25rem;">        
+          <h5>SENTENCIA SELECCIONADA, NIVEL DE DETALLE</h5>
+            <br>
+          {% for sentencia in sentencia%}
+            {{sentencia.cve_unica}}
+            <p></p>      
+            {{sentencia.texto}}
+            <p></p>
+            {{sentencia.referencia}}
+          {% endfor %}               
+    </div>
+    <button type="button" class="btn btn-outline-primary">Regresar al Menú Inicial</button>
+          <button type="button" class="btn btn-outline-primary">Imprimir</button> 
+  </div>
+</div>
+{% endautoescape %}
+{% endblock %}

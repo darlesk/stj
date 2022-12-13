@@ -1,0 +1,212 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<!-- <form action="/stj/detalle-tesis/" method="POST">{% csrf_token %} -->
+<form action="/stj/detalle-tesis/" method="POST">{% csrf_token %}
+<nav aria-label="...">
+<ul class="pagination nav justify-content-center">
+<li class="list-inline-item">
+<a href="/stj/sctj-busqueda/" class="btn btn-primary ml-5">
+Regresar a la Búsqueda
+<i class="bi-house ms-1 ml-5"></i>
+</a>
+</li>
+{% if tesis.has_previous %}
+<input type="hidden" value="1" name="input-pagina-primero" id="input-pagina">  
+<li class="list-inline-item"><div id="anchor-anterior"><button id="boton_primero" type="submit" class="btn btn-primary" aria-label="First">
+<span aria-hidden="true">
+<i class="fa fa-angle-left g-mr-5"></i>
+Inicio
+</span>
+<span class="sr-only">Inicio</span>
+</button></div></li>
+<input type="hidden" value="{{ tesis.previous_page_number }}" name="input-pagina-anterior" id="input-pagina">  
+<li class="list-inline-item"><div id="anchor-anterior"><button id="boton_anterior" type="submit" class="btn btn-primary" aria-label="Previous">
+<span aria-hidden="true">
+<i class="fa fa-angle-left g-mr-5"></i>
+Anterior
+</span>
+<span class="sr-only">Anterior</span>
+</button></div></li>
+{% endif %}
+<li class="page-item"><a class="page-link" href="#">{{ tesis.number }} de {{ tesis.paginator.num_pages }}</a></li>    
+{% if tesis.has_next %}
+<li class="list-inline-item"><div ><button type="submit" id="boton_siguiente" class="btn btn-primary" aria-label="Next">     
+<input type="hidden" value="{{tesis.next_page_number}}" name="input-pagina-siguiente" id="input-pagina">
+<span aria-hidden="true">
+Siguiente
+<i class="fa fa-angle-right g-ml-5"></i>
+</span>
+<span class="sr-only">Siguiente</span>
+</button>
+</div>
+</li>
+<li class="page-item">
+<div ><button type="submit" id="boton_ultimo" class="btn btn-primary" aria-label="Last">     
+<input type="hidden" value="{{tesis.paginator.num_pages}}" name="input-pagina-ultimo" id="input-pagina">
+<span aria-hidden="true">
+Último
+<i class="fa fa-angle-right g-ml-5"></i>
+</span>
+<span class="sr-only">Último</span>
+</button>
+</div>
+</li>
+{% endif %}  
+</ul>
+{% for epoca in epoca %}
+<input type="hidden"  value="{{epoca}}" name="detalle_checkSelectEg">
+{% endfor %}
+<input type="hidden" name="cbp" id="eventPagina">
+<input type="hidden" name="current" id="current">
+<input type="hidden" class="form-control"  value="{{materia}}" name="detalle_materia">
+<input type="hidden" class="form-control"  value="{{cve_tesis}}" name="detalle_cve_tesis">
+<input type="hidden" class="form-control"  value="{{rubro}}" name="detalle_rubro">
+<input type="hidden" class="form-control"  value="{{precedente}}" name="detalle_precedente">
+<input type="hidden" class="form-control"  value="{{referencia}}" name="detalle_referencia">
+<input type="hidden" class="form-control"  value="{{sala_pleno}}" name="detalle_sala_pleno">
+<input type="hidden" class="form-control"  value="{{texto}}" name="detalle_texto">
+<input type="text" class="form-control"  value="{{jurisprudencias}}" name="detalle_jurisprudencias">  
+<input type="hidden" class="form-control"  value="{{tesis.id}}" name="detalle_identificador">
+</form> 
+</nav>   
+<div class="overflow-hidden">
+<div class="container-fluid w-lg-80">
+<div>     
+<div class="col-md-12 mb-4 card"> 
+<div id="bar" class="card-body context">
+<h5 id="enc1">TESIS SELECCIONADA, NIVEL DE DETALLE</h5>
+<br>
+{% for txtTesis in tesis%}
+<p style="text-align: right;">{{txtTesis.materia}}</p>
+<p id="t2">{{txtTesis.cve_tesis}}</p>
+<p id="t3">{{txtTesis.rubro}} {{txtTesis.texto}}</p>
+<p id="t4">{{txtTesis.precedente}}</p>
+<p id="t5">{{txtTesis.nota}}</p>
+<p id="t6">{{txtTesis.referencia}}</p>
+</div>
+</div>     
+
+<form action="/stj/detalle-sentencia/" method="POST">{% csrf_token %}                          
+<input type="hidden"  name="sentencia_relacionada" value="{{txtTesis.cve_unica}}">
+
+{% for epoca in epoca %}
+  <input type="text"  value="{{epoca}}" name="detalle_checkSelectEg">
+{% endfor %}
+<input type="text" value="{{ tesis.number }}" name="paginaSentencia">
+<input type="text" name="cbp2" id="eventPagina2">
+<input type="text" name="current" id="current">
+<input type="text" class="form-control"  value="{{materia}}" name="detalle_materia">
+<input type="text" class="form-control"  value="{{cve_tesis}}" name="detalle_cve_tesis">
+<input type="text" class="form-control"  value="{{rubro}}" name="detalle_rubro">
+<input type="text" class="form-control"  value="{{precedente}}" name="detalle_precedente">
+<input type="text" class="form-control"  value="{{referencia}}" name="detalle_referencia">
+<input type="text" class="form-control"  value="{{sala_pleno}}" name="detalle_sala_pleno">
+<input type="text" class="form-control"  value="{{txtTesis.texto}}" name="detalle_texto">
+<input type="text" class="form-control"  value="{{jurisprudencias}}" name="detalle_jurisprudencias">  
+<input type="text" class="form-control"  value="{{tesis.id}}" name="detalle_identificador">
+
+<ul>
+{% if txtTesis.cve_unica == null or txtTesis.cve_unica == "" %}
+<li class="list-inline-item"></li>
+{% else %}
+<li class="list-inline-item"><button type="submit" class="btn btn-outline-primary">Ver sentencia relacionada</button></li>
+{%endif%}
+{% if txtTesis.acuerdo == null or txtTesis.acuerdo == "" %}
+<li class="list-inline-item"></li>
+{% else %}
+<li class="list-inline-item"><a href="/media/media/pdf/{{txtTesis.acuerdo}}" class="btn btn-outline-primary">Ver acuerdo relacionado</a></li>
+{%endif%}
+<li class="list-inline-item"><a href="javascript:history.back()" class="btn btn-outline-primary">Regresar al listado anterior</a></li>
+<li class="list-inline-item"><a href="/stj/sctj-busqueda/" class="btn btn-outline-primary">Regresar al menú principal</a></li>
+<li class="list-inline-item"><a href="/stj/tesis-pdf-detalle/{{txtTesis.id}}/" class="btn btn-outline-primary" target="_blank" rel="noopener nofollow">Imprimir</a></li>
+</form>
+
+<li class="list-inline-item"><a href="#"  data-clipboard-action="copy" data-clipboard-target="#bar" class="btn btn-outline-primary aza" data-bs-toggle="modal" data-bs-target="#exampleModal">Copiar texto</a>
+</ul>
+{% endfor %}
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Se ha copiado correctamente el texto
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+{% endautoescape %}
+{% endblock %}
+{% block javascript %}
+<script>
+var clipboard = new ClipboardJS('.aza');
+
+clipboard.on('success', function (e) {
+  console.info('Action:', e.action);
+  console.info('Text:', e.text);
+  console.info('Trigger:', e.trigger);
+});
+
+clipboard.on('error', function (e) {
+  console.info('Action:', e.action);
+  console.info('Text:', e.text);
+  console.info('Trigger:', e.trigger);
+});
+</script>
+<script>
+var instance = new Mark(document.querySelector(".context"));
+instance.mark("{{materia}}");
+instance.mark("{{cve_tesis}}");
+instance.mark("{{rubro}}"); 
+instance.mark("{{precedente}}");
+instance.mark("{{referencia}}");
+instance.mark("{{sala_pleno}}");
+instance.mark("{{texto}}");
+</script> 
+<script>  
+$('.boton-actual').on('click', function() {      
+  actual = this.value;  
+  $('#eventPagina').val("current");
+  $('#eventPagina2').val("current");
+  $('#current').val(actual);
+  $('.pagination-no-space').hide();  
+});
+$('#boton_anterior').on('click', function() {  
+  $('#eventPagina').val("anterior");
+  $('#eventPagina2').val("anterior");
+  $('.pagination-no-space').hide();
+});  
+$('#boton_siguiente').on('click', function() {     
+  $('#eventPagina').val("siguiente");  
+  $('#eventPagina2').val("siguiente");  
+  $('.pagination-no-space').hide();
+}); 
+$('#boton_ultimo').on('click', function() {     
+  $('#eventPagina').val("ultimo");  
+  $('#eventPagina2').val("ultimo");  
+  $('.pagination-no-space').hide();
+}); 
+$('#boton_primero').on('click', function() {     
+  $('#eventPagina').val("primero");  
+  $('#eventPagina2').val("primero");  
+  $('.pagination-no-space').hide();
+}); 
+$('.detalle-tesis-actual').on('click', function() {      
+  actual = this.value;    
+  alert(actual);
+  $('#pk-id').val(actual);     
+});
+</script>
+{% endblock %}

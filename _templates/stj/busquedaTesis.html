@@ -1,0 +1,49 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+  <div class="container-fluid content-space-2 mt-8" style="width: 80%;">
+    <div class="">
+      <div class="mb-5">
+        <h2>SISTEMA DE CONSULTA DE TESIS Y JURISPRUDENCIA</h2>
+      </div>      
+        
+        <div class="col-md-12">        
+          <div id="tabNumExp">
+              <table class="table table-bordered u-table--v1 mb-0">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th scope="col" style="text-align: center;">Materia</th>
+                          <th scope="col" style="text-align: center;">Identificador</th>
+                          <th scope="col" style="text-align: center;">Clave</th>
+                          <th scope="col" style="text-align: center;">Rubro</th>                        
+                          <th scope="col" style="text-align: center;">Referencia</th>                        
+                          <th scope="col" style="text-align: center;">Sala Pleno</th>                        
+                      </tr>
+                  </thead>
+                  {% for tesis in tesis%}
+                  <tr>         
+                    <td>{{ forloop.counter }}</td>             
+                      <td>{{tesis.materia}}</td>
+                      <td>
+                        <form action="" method="POST">{% csrf_token %}                          
+                          <input type="hidden"  name="identificador" value="{{tesis.id}}">
+                          <button type="submit" class="btn btn-outline-primary">{{tesis.id}}</button>
+                        </form>
+                      </td>
+                      <td>{{tesis.cve_tesis}}</td>
+                      <td>{{tesis.rubro}}</td>                    
+                      <td>{{tesis.referencia}}</td>                    
+                      <td>{{tesis.sala_pleno}}</td>                    
+                  </tr>
+                  {% endfor %}
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endautoescape %}
+{% endblock %}

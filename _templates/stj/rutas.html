@@ -1,0 +1,75 @@
+
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+
+<div class="overflow-hidden">
+    <div class="container-fluid content-space-2 mt-8">
+      <div class="w-lg-50 text-center mx-lg-auto">
+        <div class="mb-5">
+          <h2>SISTEMA DE CONSULTA DE TESIS Y JURISPRUDENCIA RUTAS</h2>
+        </div>      
+          
+          <div class="col-md-12">
+            <nav aria-label="...">
+              <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page=1">&laquo; primero</a>      
+                </li>
+                <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">anterior</a>
+              </li>
+                {% endif %}
+            
+                <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a></li>    
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.next_page_number }}">siguiente</a>      
+                </li>
+                <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">ultimo &raquo;</a>      
+              </li>
+              {% endif %}
+              </ul>
+            </nav>                  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tabNumExp">
+    <table class="table table-bordered u-table--v1 mb-0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th scope="col" style="text-align: center;">Materia</th>
+                <th scope="col" style="text-align: center;">Identificador</th>
+                <th scope="col" style="text-align: center;">Clave</th>
+                <th scope="col" style="text-align: center;">Rubro</th>                        
+                <th scope="col" style="text-align: center;">Referencia</th>                        
+                <th scope="col" style="text-align: center;">Sala Pleno</th>                        
+            </tr>
+        </thead>
+        {% for page_obj in page_obj%}
+        <tr>         
+          <td>{{ forloop.counter }}</td>             
+            <td>{{page_obj.materia}}</td>
+            <td>
+              <form action="" method="POST">{% csrf_token %}                          
+                <input type="hidden"  name="identificador" value="{{page_obj.id}}">
+                <button type="submit" class="btn btn-outline-primary">{{page_obj.id}}</button>
+              </form>
+            </td>
+            <td>{{page_obj.cve_tesis}}</td>
+            <td>{{page_obj.rubro}}</td>                    
+            <td>{{page_obj.referencia}}</td>                    
+            <td>{{page_obj.sala_pleno}}</td>                    
+        </tr>
+        {% endfor %}
+    </table>
+</div>   
+
+  {% endautoescape %}
+{% endblock %}

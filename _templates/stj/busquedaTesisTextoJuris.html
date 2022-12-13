@@ -1,0 +1,46 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+  <div class="container-fluid content-space-2 mt-8">
+    <div class="w-lg-50 mx-lg-auto">
+      <div class="mb-5">
+        <h2>SISTEMA DE CONSULTA DE TESIS Y JURISPRUDENCIA...</h2>
+      </div>      
+   
+        <div class="col-md-12 card">        
+          <h5>TESIS SELECCIONADA, NIVEL DE DETALLE</h5>
+<br>
+          {% for texto in texto%}          
+          <p>{{texto.materia}}</p>
+
+          <p>{{texto.cve_tesis}}</p>
+
+          <p>{{texto.rubro}} {{texto.texto}}</p>
+          
+          <p>{{texto.precedente}}</p>
+
+          <p>{{texto.referencia}}</p>
+        </div>
+
+        {% if not texto.cve_unica == "" %}
+        <form action="" method="POST">{% csrf_token %}                          
+          <input type="hidden"  name="sentencia_relacionada_juris" value="{{texto.cve_unica}}">
+          <button type="submit" class="btn btn-outline-primary">Ver Sentencia Relacionada</button>
+        </form>
+        {%endif%}
+
+        {% if not texto.acuerdo == "" %}
+        <a href="/stj/pdf/{{texto.acuerdo}}" class="btn btn-outline-primary">Ver acuerdo Relacionado</a>                                   
+        {%endif%}
+
+          {% endfor %}
+          <button type="button" class="btn btn-outline-primary">Regresar al Listado Anterior</button>
+          <button type="button" class="btn btn-outline-primary">Regresar al menu Principal</button>
+          <button type="button" class="btn btn-outline-primary">Imprimir</button>      
+    </div>
+  </div>
+</div>
+{% endautoescape %}
+{% endblock %}

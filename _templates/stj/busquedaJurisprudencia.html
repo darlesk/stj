@@ -1,0 +1,49 @@
+{% extends "stj/base.html" %}
+{% load static %}
+{% block boletin %}
+{% autoescape off %}
+<div class="overflow-hidden">
+  <div class="container-fluid content-space-2 mt-8">
+    <div class="w-lg-50 text-center mx-lg-auto">
+      <div class="mb-5">
+        <h2>Busqueda de JURISPRUDENCIA</h2>
+      </div>      
+        
+        <div class="col-md-12">        
+          <div id="tabNumExp">
+              <table class="table table-bordered u-table--v1 mb-0">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th scope="col" style="text-align: center;">Materia</th>
+                          <th scope="col" style="text-align: center;">Identificador</th>
+                          <th scope="col" style="text-align: center;">Clave</th>
+                          <th scope="col" style="text-align: center;">Rubro</th>                        
+                          <th scope="col" style="text-align: center;">Referencia</th>                        
+                          <th scope="col" style="text-align: center;">Sala Pleno</th>                        
+                      </tr>
+                  </thead>
+                  {% for jurisprudencias in jurisprudencias%}
+                  <tr>         
+                    <td>{{ forloop.counter }}</td>             
+                      <td>{{jurisprudencias.materia}}</td>
+                      <td>
+                        <form action="" method="POST">{% csrf_token %}                          
+                          <input type="hidden"  name="identificadorJuri" value="{{jurisprudencias.id}}">
+                          <button type="submit" class="btn btn-outline-primary">{{jurisprudencias.id}}</button>
+                        </form>
+                      </td>
+                      <td>{{jurisprudencias.cve_tesis}}</td>
+                      <td>{{jurisprudencias.rubro}}</td>                    
+                      <td>{{jurisprudencias.referencia}}</td>                    
+                      <td>{{jurisprudencias.sala_pleno}}</td>                    
+                  </tr>
+                  {% endfor %}
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endautoescape %}
+{% endblock %}

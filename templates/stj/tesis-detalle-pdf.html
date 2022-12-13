@@ -1,0 +1,222 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Acuse</title>
+    <meta name="description" content="Detalle tesis">
+    <meta name="author" content="CupaAhiezer">
+    <style>
+        @charset "UTF-8";
+        @import url(https: //fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro:400, 700);
+
+        @page {
+            margin: 1cm;
+
+            @bottom-left {
+                color: #a9a;
+                content: 'Tribunal Federal de Justicia Administrativa. ';
+                font-family: Source Sans Pro;
+                font-size: 8pt;
+            }
+
+            @bottom-right {
+                color: #a9a;
+                content: 'portal.tfja@tfjfa.gob.mx | +50037000 ext 3449';
+                font-family: Source Sans Pro;
+                font-size: 9pt;
+            }
+        }
+
+        html {
+            color: #14213d;
+            font-family: Source Sans Pro;
+            font-size: 11pt;
+            line-height: 1.6;
+        }
+
+        html body {
+            margin: 0;
+        }
+
+        html h1 {
+            color: #1ee494;
+            font-family: Pacifico;
+            font-size: 40pt;
+            margin: 0;
+        }
+
+        .td {
+            color: #036;
+            font-size: 15pt;
+            text-align: center;
+            margin: 0;
+        }
+
+        html h2 {
+            color: #036;
+            font-size: 15pt;
+            text-align: center;            
+            margin-bottom: 30px;
+        }
+
+        html h3 {
+            color: #a9a;
+            font-size: 10pt;
+            text-align: justify;
+            margin-top: 10px;
+        }
+
+        html h4 {
+            color: #3a3f44;
+            font-size: 10pt;
+            text-align: left;
+            margin: 0;
+        }
+
+        html aside {
+            display: flex;
+            margin: .5em 0 2em;
+        }
+
+        html aside address {
+            font-style: normal;
+            white-space: pre-line;
+        }
+
+        html aside address#from {
+            text-align: center;
+        }
+
+        html aside address#to {
+            color: #a9a;
+            text-align: right;
+        }
+
+        html dl {
+            text-align: right;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        html dl dd,
+        html dl dt {
+            display: inline;
+            margin: 0;
+        }
+
+        html dl dt {
+            color: #a9a;
+        }
+
+        html dl dt::before {
+            content: '';
+            display: block;
+        }
+
+        html dl dt::after {
+            content: ':'
+        }
+
+        html table {
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        html table th {
+            border-bottom: .2mm solid #a9a;
+            color: #a9a;
+            font-size: 10pt;
+            font-weight: 400;
+            padding-bottom: .25cm;
+            text-transform: uppercase;
+        }
+
+        html table td {
+            padding-top: 7mm;
+        }
+
+        html table td:last-of-type {
+            color: #036;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        html table td,
+        html table th {
+            text-align: left;
+        }
+
+        html table td:first-of-type,
+        html table th:first-of-type {
+            text-align: left;
+        }
+
+        html table td:last-of-type,
+        html table th:last-of-type {
+            text-align: right;
+        }
+
+        html table#total {
+            background: #f6f6f6;
+            border-color: #f6f6f6;
+            border-style: solid;
+            border-width: 2cm 3cm;
+            bottom: 0;
+            font-size: 20pt;
+            margin: 0 -3cm;
+            position: absolute;
+            width: 18cm;
+        }
+
+        .ta {
+            background: #f6f6f6;
+            border-color: #f6f6f6;
+            padding: 6px;
+            color: #036;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    {% for post in post %}
+    <h1><img src="https://www.tfja.gob.mx/static/images/logos/logo_colorv.png" style="width: 180px;" alt="logo_tfja">
+    </h1>
+    
+    <h2>Detalle Tesis</h2>
+    <dl id="informations">        
+        <img src="https://www.tfja.gob.mx/static/logos/tfja_86.svg" style="width: 200px; margin-top: -15px;"  alt="logo_tfja2">      
+    </dl>
+    <div style="width:100%; word-wrap: break-word; text-align: justify;">
+        {% autoescape off %}
+             
+        <p>Materia: {{post.materia}}</p>
+        Clave: <strong>{{post.cve_tesis}}</strong><br>
+        Rubro: <strong>{{post.rubro}}</strong><br>
+        <p class="lead">{{post.texto}}</p>
+        <p class="lead">{{post.precedente}}</p>
+        <p>{{post.referencia}}</p>
+        {% endautoescape %}
+        {%endfor%}
+    </div>
+    <table>
+        <thead>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="width:100%; word-wrap: break-word;">
+    </div>
+    <h4></h4>
+</body>
+
+</html>
