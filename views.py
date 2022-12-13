@@ -247,7 +247,7 @@ def stj_resul(request):
                     except EmptyPage:                        
                         tesis = paginator.page(paginator.num_pages)
                     
-            return render(request, 'stj/busquedaTesis.html',{"tesis":tesis,"epoca":epoca,"materia":materia,"cve_tesis":cve_tesis,"rubro":rubro,"precedente":precedente,"referencia":referencia,"sala_pleno":sala_pleno,"texto":texto,"jurisprudencias":jurisprudencias,"rubroRadioEg":rubroRadioEg,"textoRadioEg":textoRadioEg,"rubro_palabras":rubro_palabras})                   
+            return render(request, 'stj/busquedaTesis.html',{"tesis":tesis,"epoca":epoca,"materia":materia,"cve_tesis":cve_tesis,"rubro":rubro,"precedente":precedente,"referencia":referencia,"sala_pleno":sala_pleno,"texto":texto,"jurisprudencias":jurisprudencias,"rubroRadioEg":rubroRadioEg,"textoRadioEg":textoRadioEg})                   
         
         if epoca and jurisprudencias=="NoJurisprudencia":             
             if not cve_tesis and not materia and not rubro and not precedente and not precedente and not sala_pleno and not texto and not referencia:                
